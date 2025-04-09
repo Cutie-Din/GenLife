@@ -1,0 +1,61 @@
+name: genlife_mobi
+description: "GenLife"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  device_preview:
+  device_info_plus:
+  dio:
+  equatable:
+  flutter_bloc:
+  flutter_svg:
+  flutter_dotenv:
+  freezed_annotation:
+  font_awesome_flutter:
+  get:
+  gap:
+  google_fonts:
+  logger:
+  intl:
+  image_picker:
+  json_annotation:
+  retrofit: 
+  shared_preferences:
+  stylish_bottom_bar:
+  pretty_dio_logger:  
+  skeletonizer: ^1.4.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  freezed:
+  json_serializable: 
+  retrofit_generator:
+  build_runner:
+  flutter_launcher_icons: ^0.9.0
+  import_sorter: ^4.6.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.jpg"
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - .env
+    - assets/images/
+  fonts:
+    - family: AvenirNext
+      fonts:
+        - asset: assets/font/AvenirNextLTPro-Regular.otf
