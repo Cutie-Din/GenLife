@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  easy_localization:
   cupertino_icons: ^1.0.8
   device_preview:
   device_info_plus:
@@ -55,6 +56,7 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/langs/
   fonts:
     - family: AvenirNext
       fonts:
