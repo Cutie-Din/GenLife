@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:genlife_mobi/src/shared/app_export.dart';
 
 class BaseError implements Exception {

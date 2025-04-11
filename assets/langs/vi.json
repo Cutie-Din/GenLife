@@ -13,8 +13,9 @@
     "search": "Tìm kiếm",
     "top_categories": "Danh mục hàng đầu",
     "categories": "Danh mục",
-    "classes": "Lớp học",
+    "featured_classes": "Lớp học đặc trưng",
     "quizzes": "Đố vui",
-    "courses": "Khoá học",
+    "featured_courses": "Khoá học đặc trưng",
+    "popular_courses": "Khoá học nội bật",
     "see_all": "Xem tất cả"
 }

@@ -30,10 +30,9 @@ class _NavigationPaneState extends State<NavigationPane> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AppImages.logo, fit: BoxFit.contain, height: 32),
+          child: Image.asset(AppImages.logo, fit: BoxFit.contain),
         ),
         actions: [
           Builder(
@@ -52,12 +51,7 @@ class _NavigationPaneState extends State<NavigationPane> {
       body: PageView(
         controller: controller,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
-          const HomeScreen(),
-          const CartScreen(),
-          const CourseScreen(),
-          const AccountScreen(),
-        ],
+        children: [HomeScreen(), const CartScreen(), const CourseScreen(), const AccountScreen()],
       ),
 
       bottomNavigationBar: Stack(

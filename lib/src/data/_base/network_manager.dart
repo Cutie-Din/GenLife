@@ -13,12 +13,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class NetworkManager {
   final String proxy = AppConfig.proxy;
 
-  BaseOptions opts = BaseOptions(
-    baseUrl: AppConfig.url,
-    contentType: 'application/json',
-    connectTimeout: const Duration(seconds: 60),
-    receiveTimeout: const Duration(seconds: 60),
-  );
+  BaseOptions opts = BaseOptions(baseUrl: AppConfig.url, contentType: 'application/json');
 
   // BaseOptions optsGoogleMap = BaseOptions(
   //   baseUrl: '',
@@ -40,19 +35,25 @@ class NetworkManager {
 
     // // add proxy debugable base on https://flutterigniter.com/debugging-network-requests/
     if (kDebugMode) {
-      if (proxy.isEmpty) {
-        return dio;
-      }
+      // if (proxy.isEmpty) {
+      //   return dio;
+      // }
+
+      // (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      //   final client = HttpClient();
+      //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      //   return client;
+      // };
 
       dio.httpClientAdapter = IOHttpClientAdapter(
         createHttpClient: () {
           final client = HttpClient();
-          client.findProxy = (uri) {
-            // Proxy all request to localhost:8888.
-            // Be aware, the proxy should went through you running device,
-            // not the host platform.
-            return 'PROXY $proxy';
-          };
+          // client.findProxy = (uri) {
+          //   // Proxy all request to localhost:8888.
+          //   // Be aware, the proxy should went through you running device,
+          //   // not the host platform.
+          //   return 'PROXY $proxy';
+          // };
           client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
           return client;
         },
@@ -66,7 +67,7 @@ class NetworkManager {
 extension AppAppDioExtension on Dio {
   Dio addInterceptors() {
     return this
-      ..interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true))
+      ..interceptors.add(PrettyDioLogger(requestBody: false, requestHeader: true))
       ..interceptors.add(
         InterceptorsWrapper(
           onRequest: requestInterceptor,

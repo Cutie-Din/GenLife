@@ -39,7 +39,7 @@ extension AppRouteExt on AppRoute {
           settings: settings,
           page: () => const NavigationPane(),
           bindings: [
-            // BindingsBuilder.put(() => DashboardCubit(Get.find(), Get.find())),
+            BindingsBuilder.put(() => HomeCubit(Get.find(), Get.find())),
             // BindingsBuilder.put(() => HistoryCubit(Get.find(), Get.find())),
             // BindingsBuilder.put(() => NotificationCubit(Get.find(), Get.find())),
             // BindingsBuilder.put(() => AccountCubit(Get.find(), Get.find())),
@@ -49,8 +49,8 @@ extension AppRouteExt on AppRoute {
       case AppRoute.home:
         return GetPageRoute(
           settings: settings,
-          page: () => const HomeScreen(),
-          // bindings: [BindingsBuilder.put(() => DashboardCubit(Get.find(), Get.find()))],
+          page: () => HomeScreen(),
+          bindings: [BindingsBuilder.put(() => HomeCubit(Get.find(), Get.find()))],
         );
       case AppRoute.cart:
         return GetPageRoute(

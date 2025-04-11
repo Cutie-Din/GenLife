@@ -4,29 +4,18 @@ part 'base_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class BaseResponse<T> {
-  @JsonKey(name: 'code')
-  String? code;
+  @JsonKey(name: 'success')
+  final bool? success;
 
-  @JsonKey(name: 'error')
-  String? error;
-
-  @JsonKey(name: 'token')
-  String? token;
+  @JsonKey(name: 'message')
+  final String? message;
 
   @JsonKey(name: 'data')
-  T? data;
+  final T? data;
 
-  BaseResponse({
-    this.code,
-    this.error,
-    this.token,
-    this.data,
-  });
+  BaseResponse({this.success, this.message, this.data});
 
-  factory BaseResponse.fromJson(
-    Map<String, dynamic> json,
-    T Function(Object? json) fromJsonT,
-  ) =>
+  factory BaseResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
       _$BaseResponseFromJson(json, fromJsonT);
 
   Map<String, dynamic> toJson(Object Function(T? value) toJsonT) =>

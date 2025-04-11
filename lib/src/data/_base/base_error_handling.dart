@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:genlife_mobi/src/shared/app_export.dart';
 
 Exception handleError(String error) {

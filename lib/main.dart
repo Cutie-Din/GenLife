@@ -1,6 +1,6 @@
 import 'dart:io';
 
-// import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:genlife_mobi/src/shared/app_export.dart';
 import 'package:genlife_mobi/src/utils/app_dependencies.dart';
@@ -23,7 +23,18 @@ void main() async {
 
   log.i("Platform: $platform\nDevicdeID: $deviceId");
 
-  // runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()));
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder:
+  //         (context) => EasyLocalization(
+  //           supportedLocales: const [Locale('vi')],
+  //           path: 'assets/langs',
+  //           fallbackLocale: const Locale('vi'),
+  //           child: MyApp(),
+  //         ),
+  //   ),
+  // );
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('vi')],
@@ -42,7 +53,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
+
       // builder: DevicePreview.appBuilder,
       locale: context.locale,
       supportedLocales: context.supportedLocales,

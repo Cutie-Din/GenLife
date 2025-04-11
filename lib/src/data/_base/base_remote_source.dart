@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:retrofit/retrofit.dart';
 import 'package:genlife_mobi/src/shared/app_export.dart';
 
 abstract class BaseRemoteSource {
