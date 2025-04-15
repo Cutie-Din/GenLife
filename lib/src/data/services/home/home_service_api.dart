@@ -11,4 +11,12 @@ class HomeServiceApi extends BaseRemoteSource implements HomeRepository {
     });
     return response;
   }
+
+  @override
+  Future<BaseResponse> getPopularCourses() {
+    final response = callApiWithErrorParser(service.getPopularCourses()).then((httpResponse) {
+      return httpResponse.data;
+    });
+    return response;
+  }
 }

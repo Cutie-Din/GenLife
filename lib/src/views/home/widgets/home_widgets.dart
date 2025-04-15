@@ -1,5 +1,15 @@
 import 'package:genlife_mobi/src/shared/app_export.dart';
 
+String formatCurrency(dynamic value) {
+  if (value == null || value.toString().isEmpty) return '';
+  try {
+    final intValue = value is int ? value : int.tryParse(value.toString()) ?? 0;
+    return '${NumberFormat('#,###', 'vi_VN').format(intValue)} đ';
+  } catch (_) {
+    return '';
+  }
+}
+
 Widget topCategories({required bool isLoading, required List<Map<String, dynamic>> categories}) {
   final List<Color> colorPalette = [
     AppColors.primary,
@@ -117,7 +127,14 @@ Widget featuredBoxList({
             itemBuilder: (context, index) {
               final item =
                   isLoading
-                      ? {'title': '', 'author': '', 'image': '', 'discount': ''}
+                      ? {
+                        'id': '',
+                        'title': '',
+                        'assigned_instructor': '',
+                        'image': '',
+                        'price': '',
+                        'discount_price': '',
+                      }
                       : items[index];
 
               return Padding(
@@ -141,20 +158,27 @@ Widget featuredBoxList({
                               topLeft: Radius.circular(12),
                               topRight: Radius.circular(12),
                             ),
-                            child: Image.network(
-                              item['image'] ?? '',
+                            child: CachedNetworkImage(
+                              imageUrl: item['image'] ?? '',
                               width: ResponsiveHelper.wp(50),
                               height: ResponsiveHelper.hp(12),
                               fit: BoxFit.cover,
-                              errorBuilder:
-                                  (_, __, ___) => Container(
+                              placeholder:
+                                  (context, url) => Container(
+                                    width: ResponsiveHelper.wp(50),
+                                    height: ResponsiveHelper.hp(12),
+                                    color: Colors.grey[200],
+                                  ),
+                              errorWidget:
+                                  (context, url, error) => Container(
                                     width: ResponsiveHelper.wp(50),
                                     height: ResponsiveHelper.hp(12),
                                     color: Colors.grey[300],
+                                    child: Icon(Icons.error, color: Colors.grey),
                                   ),
                             ),
                           ),
-                          if (!isLoading && (item['discount'] ?? '').isNotEmpty)
+                          if (!isLoading && (item['price']?.toString().isNotEmpty ?? false))
                             Positioned(
                               top: ResponsiveHelper.hp(0.8),
                               right: ResponsiveHelper.wp(1.5),
@@ -167,13 +191,44 @@ Widget featuredBoxList({
                                   color: Colors.redAccent,
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: Text(
-                                  '${item['discount']}',
-                                  style: GoogleFonts.inter(
-                                    fontSize: ResponsiveHelper.sp(10),
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    // Display price with line-through decoration (black color)
+                                    Text(
+                                      formatCurrency(item['price']),
+                                      style: GoogleFonts.inter(
+                                        fontSize: ResponsiveHelper.sp(10),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                        decoration:
+                                            TextDecoration.lineThrough, // Gạch ngang cho price
+                                        decorationColor: Colors.black, // Màu gạch ngang là màu đen
+                                        decorationThickness: 2, // Độ dày của gạch ngang
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ), // Thêm khoảng cách giữa price và discount_price
+                                    Text(
+                                      '/',
+                                      style: GoogleFonts.inter(
+                                        fontSize: ResponsiveHelper.sp(10),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                    ), // Thêm khoảng cách giữa dấu '/' và discount_price
+                                    Text(
+                                      formatCurrency(item['discount_price']),
+                                      style: GoogleFonts.inter(
+                                        fontSize: ResponsiveHelper.sp(10),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -198,7 +253,7 @@ Widget featuredBoxList({
                             ),
                             SizedBox(height: ResponsiveHelper.hp(0.5)),
                             Text(
-                              item['author'] ?? '',
+                              item['assigned_instructor'] ?? '',
                               style: GoogleFonts.inter(
                                 fontSize: ResponsiveHelper.sp(12),
                                 color: Colors.grey[600],

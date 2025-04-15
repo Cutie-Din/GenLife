@@ -14,13 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _onRefresh() async {
     await _cubit.getTopCate();
-
+    await _cubit.getPopularCourses();
     _refreshController.refreshCompleted();
   }
 
   @override
   void initState() {
     _cubit.getTopCate();
+    _cubit.getPopularCourses();
     super.initState();
   }
 
@@ -64,16 +65,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: featuredBoxList(
                       isLoading: state.status == HomeStatus.loading,
                       title: 'featured_courses',
-                      items: [
-                        {
-                          'title': 'Flutter Cơ Bản',
-                          'author': 'Nguyễn Văn A',
-                          'image': 'https://picsum.photos/200',
-                          'discount': '-20%',
-                        },
-                      ],
+                      items:
+                          state.popularCourses
+                              .map(
+                                (e) => {
+                                  'id': e.id,
+                                  'title': e.title,
+                                  'image': e.image,
+                                  'assigned_instructor': e.assigned_instructor,
+                                  'price': e.price,
+                                  'discount_price': e.discount_price,
+                                },
+                              )
+                              .toList(),
                     ),
                   ),
+
                   Gap(10),
                   Skeletonizer(
                     enabled: state.status == HomeStatus.loading,

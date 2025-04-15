@@ -6,4 +6,7 @@ abstract class HomeService {
   factory HomeService(Dio dio, {String? baseUrl}) = _HomeService;
   @GET('top-categories')
   Future<HttpResponse<BaseResponse>> getTopCate();
+
+  @GET('get-popular-courses')
+  Future<HttpResponse<BaseResponse>> getPopularCourses();
 }

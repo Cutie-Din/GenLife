@@ -23,6 +23,7 @@ export 'package:pull_to_refresh/pull_to_refresh.dart' hide RefreshIndicator, Ref
 export 'package:dio/dio.dart' hide FormData, Response, MultipartFile;
 export 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 export 'package:retrofit/retrofit.dart' hide Parser, Path, Headers;
+export 'package:cached_network_image/cached_network_image.dart';
 
 // Configuration
 export 'package:genlife_mobi/config/app_config.dart';
@@ -55,6 +56,7 @@ export 'package:genlife_mobi/src/data/_base/network_manager.dart';
 // Models
 
 export 'package:genlife_mobi/src/data/model/home/top_categories_model.dart';
+export 'package:genlife_mobi/src/data/model/home/popular_courses_model.dart';
 
 // Repositories
 export 'package:genlife_mobi/src/data/repositories/home/home_repository.dart';

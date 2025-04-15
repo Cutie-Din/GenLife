@@ -9,6 +9,7 @@ class HomeState with _$HomeState {
   const factory HomeState({
     @Default(HomeStatus.initial) final HomeStatus status,
     @Default([]) List<TopCategoriesModel> topCategories,
+    @Default([]) List<PopularCoursesModel> popularCourses,
     TopCategoriesModel? category,
 
     @Default('') final String message,

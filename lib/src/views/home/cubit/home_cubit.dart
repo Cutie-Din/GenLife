@@ -23,4 +23,20 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(status: HomeStatus.failure, message: e.toString()));
     }
   }
+
+  Future<void> getPopularCourses() async {
+    try {
+      emit(state.copyWith(status: HomeStatus.loading));
+
+      final response = await repo.getPopularCourses();
+
+      final courses =
+          (response.data as List<dynamic>)
+              .map((e) => PopularCoursesModel.fromJson(e as Map<String, dynamic>))
+              .toList();
+      emit(state.copyWith(status: HomeStatus.success, popularCourses: courses));
+    } catch (e) {
+      emit(state.copyWith(status: HomeStatus.failure, message: e.toString()));
+    }
+  }
 }

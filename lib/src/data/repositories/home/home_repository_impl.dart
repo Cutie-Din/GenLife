@@ -6,4 +6,7 @@ class HomeRepositoryImpl implements HomeRepository {
 
   @override
   Future<BaseResponse> getTopCate() => repo.getTopCate();
+
+  @override
+  Future<BaseResponse> getPopularCourses() => repo.getPopularCourses();
 }

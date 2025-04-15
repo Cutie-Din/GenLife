@@ -20,6 +20,8 @@ mixin _$HomeState {
   HomeStatus get status => throw _privateConstructorUsedError;
   List<TopCategoriesModel> get topCategories =>
       throw _privateConstructorUsedError;
+  List<PopularCoursesModel> get popularCourses =>
+      throw _privateConstructorUsedError;
   TopCategoriesModel? get category => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
@@ -38,6 +40,7 @@ abstract class $HomeStateCopyWith<$Res> {
   $Res call({
     HomeStatus status,
     List<TopCategoriesModel> topCategories,
+    List<PopularCoursesModel> popularCourses,
     TopCategoriesModel? category,
     String message,
   });
@@ -62,6 +65,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? status = null,
     Object? topCategories = null,
+    Object? popularCourses = null,
     Object? category = freezed,
     Object? message = null,
   }) {
@@ -77,6 +81,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
                     ? _value.topCategories
                     : topCategories // ignore: cast_nullable_to_non_nullable
                         as List<TopCategoriesModel>,
+            popularCourses:
+                null == popularCourses
+                    ? _value.popularCourses
+                    : popularCourses // ignore: cast_nullable_to_non_nullable
+                        as List<PopularCoursesModel>,
             category:
                 freezed == category
                     ? _value.category
@@ -119,6 +128,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   $Res call({
     HomeStatus status,
     List<TopCategoriesModel> topCategories,
+    List<PopularCoursesModel> popularCourses,
     TopCategoriesModel? category,
     String message,
   });
@@ -143,6 +153,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? topCategories = null,
+    Object? popularCourses = null,
     Object? category = freezed,
     Object? message = null,
   }) {
@@ -158,6 +169,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
                 ? _value._topCategories
                 : topCategories // ignore: cast_nullable_to_non_nullable
                     as List<TopCategoriesModel>,
+        popularCourses:
+            null == popularCourses
+                ? _value._popularCourses
+                : popularCourses // ignore: cast_nullable_to_non_nullable
+                    as List<PopularCoursesModel>,
         category:
             freezed == category
                 ? _value.category
@@ -179,9 +195,11 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   const _$HomeStateImpl({
     this.status = HomeStatus.initial,
     final List<TopCategoriesModel> topCategories = const [],
+    final List<PopularCoursesModel> popularCourses = const [],
     this.category,
     this.message = '',
-  }) : _topCategories = topCategories;
+  }) : _topCategories = topCategories,
+       _popularCourses = popularCourses;
 
   @override
   @JsonKey()
@@ -195,6 +213,15 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     return EqualUnmodifiableListView(_topCategories);
   }
 
+  final List<PopularCoursesModel> _popularCourses;
+  @override
+  @JsonKey()
+  List<PopularCoursesModel> get popularCourses {
+    if (_popularCourses is EqualUnmodifiableListView) return _popularCourses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_popularCourses);
+  }
+
   @override
   final TopCategoriesModel? category;
   @override
@@ -203,7 +230,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState(status: $status, topCategories: $topCategories, category: $category, message: $message)';
+    return 'HomeState(status: $status, topCategories: $topCategories, popularCourses: $popularCourses, category: $category, message: $message)';
   }
 
   @override
@@ -213,6 +240,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
       ..add(DiagnosticsProperty('type', 'HomeState'))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('topCategories', topCategories))
+      ..add(DiagnosticsProperty('popularCourses', popularCourses))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('message', message));
   }
@@ -227,6 +255,10 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
               other._topCategories,
               _topCategories,
             ) &&
+            const DeepCollectionEquality().equals(
+              other._popularCourses,
+              _popularCourses,
+            ) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.message, message) || other.message == message));
@@ -237,6 +269,7 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
     runtimeType,
     status,
     const DeepCollectionEquality().hash(_topCategories),
+    const DeepCollectionEquality().hash(_popularCourses),
     category,
     message,
   );
@@ -254,6 +287,7 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState({
     final HomeStatus status,
     final List<TopCategoriesModel> topCategories,
+    final List<PopularCoursesModel> popularCourses,
     final TopCategoriesModel? category,
     final String message,
   }) = _$HomeStateImpl;
@@ -262,6 +296,8 @@ abstract class _HomeState implements HomeState {
   HomeStatus get status;
   @override
   List<TopCategoriesModel> get topCategories;
+  @override
+  List<PopularCoursesModel> get popularCourses;
   @override
   TopCategoriesModel? get category;
   @override
